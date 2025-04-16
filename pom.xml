@@ -88,9 +88,6 @@
         </plugins>
     </build>
     <properties>
-        <assembly.format>tar.gz</assembly.format>
-        <assembly.id>linux</assembly.id>
-        <assembly.lineEnding>unix</assembly.lineEnding>
         <maven.compiler.release>21</maven.compiler.release>
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.install.skip>true</maven.install.skip>
@@ -137,4 +134,69 @@
             <version>2.0.17</version>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>linux</id>
+            <activation>
+                <os>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <assembly.format>tar.gz</assembly.format>
+                <assembly.id>linux</assembly.id>
+                <assembly.lineEnding>unix</assembly.lineEnding>
+            </properties>
+        </profile>
+        <profile>
+            <id>macos</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <assembly.format>tar.gz</assembly.format>
+                <assembly.id>macos</assembly.id>
+                <assembly.lineEnding>unix</assembly.lineEnding>
+            </properties>
+        </profile>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <assembly.format>zip</assembly.format>
+                <assembly.id>windows</assembly.id>
+                <assembly.lineEnding>windows</assembly.lineEnding>
+            </properties>
+        </profile>
+        <profile>
+            <id>for-linux</id>
+            <properties>
+                <assembly.format>tar.gz</assembly.format>
+                <assembly.id>linux</assembly.id>
+                <assembly.lineEnding>unix</assembly.lineEnding>
+            </properties>
+        </profile>
+        <profile>
+            <id>for-macos</id>
+            <properties>
+                <assembly.format>tar.gz</assembly.format>
+                <assembly.id>macos</assembly.id>
+                <assembly.lineEnding>unix</assembly.lineEnding>
+            </properties>
+        </profile>
+        <profile>
+            <id>for-windows</id>
+            <properties>
+                <assembly.format>zip</assembly.format>
+                <assembly.id>windows</assembly.id>
+                <assembly.lineEnding>windows</assembly.lineEnding>
+            </properties>
+        </profile>
+    </profiles>
 </project>
