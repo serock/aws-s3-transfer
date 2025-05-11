@@ -22,6 +22,7 @@ public class TransferApp {
     private TransferImplementation transferImplementation;
 
     public static void main(final String[] args) {
+        validate(args);
         final TransferApp app = new TransferApp();
         app.setTransferMode(Mode.valueOf(args[0]));
         if (app.transferMode().equals(Mode.upload)) {
@@ -39,6 +40,22 @@ public class TransferApp {
         app.setKeyGenerator(DefaultWrappingKeyGenerator.getInstance());
         app.setPasswordRetriever(EnvironmentVariablePasswordRetriever.getInstance());
         app.transferFile();
+    }
+
+    private static void validate(final String[] args) {
+        if (args.length != 4) {
+            showUsage();
+            System.exit(1);
+        }
+        if (!(args[0].equals(Mode.upload.toString()) || args[0].equals(Mode.download.toString()))) {
+            showUsage();
+            System.exit(1);
+        }
+    }
+
+    private static void showUsage() {
+        System.out.println("java -jar aws-s3-transfer.jar upload <local-file> <bucket-name> <object-key>");
+        System.out.println("java -jar aws-s3-transfer.jar download <bucket-name> <object-key> <local-file>");
     }
 
     protected char[] retrievePassword() {
