@@ -1,5 +1,5 @@
 # aws-s3-transfer
-Transfer a file to or from AWS S3 using client-side 256-bit AES encryption.
+Transfer a file to or from AWS S3 using client-side 256-bit AES-GCM encryption.
 
 ## Prerequisites
 * An organization instance of AWS IAM Identity Center
