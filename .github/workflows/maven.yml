@@ -12,6 +12,11 @@ jobs:
     steps:
     - name: Check out source code
       uses: actions/checkout@v4
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'
     - name: Build and package JAR for Linux
       run: mvn --batch-mode package
     - name: Create assembly for Linux
